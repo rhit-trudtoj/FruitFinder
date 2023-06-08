@@ -11,7 +11,7 @@ for num = 1:numFruit
     
     pattern = '([^\\]+)\.tiff$';
     
-    target = regexp(char(Fruit(num)), pattern, 'tokens', 'once');
+    target = regexp(char(Paths(i)), pattern, 'tokens', 'once');
     
     img = imread(char(Fruit(num)));
     
@@ -48,13 +48,12 @@ for num = 1:numFruit
     mask(find((h >= 0.1 & h <= 0.25) & (s >= 0.35) & (v >= 0.55))) = 1; 
     reg_mask(:,:,3) = mask;
     
-    %save masks
     if ~isempty(target)
         fruit = target{1};
     
         filename = ['fruitFinderMask_', fruit, '.png'];
     
-        imwrite(reg_mask, filename); 
+        imwrite(reg_mask, filename)
         
     else
         disp('String not found.');

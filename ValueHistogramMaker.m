@@ -17,20 +17,21 @@ for i = 1:num
     
     img = imread(char(Paths(i))); 
     
+    %regex provided by chatgpt
     pattern = '([^\\]+)\.tiff$';
     
     target = regexp(char(Paths(i)), pattern, 'tokens', 'once');
     
     hsvimg = rgb2hsv(img); 
     
-    h = hsvimg(:,:,1); 
+    v = hsvimg(:,:,3); 
     
-    imhist(h);
+    imhist(v);
     
     if ~isempty(target)
         fruit = target{1};
     
-        filename = ['histogram_', fruit, '.png'];
+        filename = ['value_histogram_', fruit, '.png'];
     
         saveas(gcf, filename);
         
