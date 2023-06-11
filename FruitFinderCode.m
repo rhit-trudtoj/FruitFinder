@@ -73,7 +73,7 @@ for num = 1:numFruit
           
           reg_mask(:,:,i) = temp_mask;
           
-          %get average cluster size and remove those that are <50
+          %get average cluster size and remove those that are <100
           components = bwconncomp(temp_mask); 
           pixels = cellfun(@numel, components.PixelIdxList); 
           remove = find(pixels < 100);
@@ -122,17 +122,17 @@ for num = 1:numFruit
     
     
     %save masks
-%     if ~isempty(target)
-%         fruit = target{1};
-%     
-%         filename = ['fruitFinderMask_', fruit, '.png'];
-%     
-%         imwrite(reg_mask, filename); 
-%         
-%     else
-%         disp('String not found.');
-%     
-%     end
+    if ~isempty(target)
+        fruit = target{1};
+    
+        filename = ['fruitFinderMask_', fruit, '.png'];
+    
+        imwrite(reg_mask, filename); 
+        
+    else
+        disp('String not found.');
+    
+    end
     
     
 end 
